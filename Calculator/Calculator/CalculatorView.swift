@@ -36,6 +36,7 @@ struct CalculatorView: View {
                     // Result Text
                     ScrollView(.horizontal, showsIndicators: false) {
                         Text(model.result)
+                            .foregroundColor(Color("InputText"))
                             .frame(minWidth: geometry.size.width, alignment: .trailing)
                             .lineLimit(1)
                             .font(Font.system(size: 50, weight: .light))
@@ -47,61 +48,61 @@ struct CalculatorView: View {
                     VStack {
                         HStack {
                             VStack {
-                                TypeButton(Text("7")) {
+                                NormalButton(Text("7")) {
                                     model.number("7")
                                 }
-                                TypeButton(Text("4")) {
+                                NormalButton(Text("4")) {
                                     model.number("4")
                                 }
-                                TypeButton(Text("1")) {
+                                NormalButton(Text("1")) {
                                     model.number("1")
                                 }
                                 
                             }
                             VStack {
-                                TypeButton(Text("8")) {
+                                NormalButton(Text("8")) {
                                     model.number("8")
                                 }
-                                TypeButton(Text("5")) {
+                                NormalButton(Text("5")) {
                                     model.number("5")
                                 }
-                                TypeButton(Text("2")) {
+                                NormalButton(Text("2")) {
                                     model.number("2")
                                 }
                                 
                             }
                             VStack {
-                                TypeButton(Text("9")) {
+                                NormalButton(Text("9")) {
                                     model.number("9")
                                 }
-                                TypeButton(Text("6")) {
+                                NormalButton(Text("6")) {
                                     model.number("6")
                                 }
-                                TypeButton(Text("3")) {
+                                NormalButton(Text("3")) {
                                     model.number("3")
                                 }
                                 
                             }
                             VStack {
-                                TypeButton(
+                                NormalButton(
                                     Text(Image(systemName: "divide")),
                                     color: Color("OperationButton"),
                                     bgColor: .clear) {
                                     model.operation("/")
                                 }
-                                TypeButton(
+                                NormalButton(
                                     Text(Image(systemName: "multiply")),
                                     color: Color("OperationButton"),
                                     bgColor: .clear) {
                                     model.operation("x")
                                 }
-                                TypeButton(
+                                NormalButton(
                                     Text(Image(systemName: "minus")),
                                     color: Color("OperationButton"),
                                     bgColor: .clear) {
                                     model.operation("-")
                                 }
-                                TypeButton(
+                                NormalButton(
                                     Text(Image(systemName: "plus")),
                                     color: Color("OperationButton"),
                                     bgColor: .clear) {
@@ -110,19 +111,19 @@ struct CalculatorView: View {
                             }
                             .background(Color("OperationBgButton"))
                             .cornerRadius(10)
-                            .padding(.vertical)
+//                            .padding(.vertical)
                         }
                         HStack {
-                            TypeButton(Text(".")) {
+                            NormalButton(Text(".")) {
                                 model.number(".")
                             }
-                            TypeButton(Text("0")) {
+                            NormalButton(Text("0")) {
                                 model.number("0")
                             }
-                            TypeButton(Text(Image(systemName: "arrow.left"))) {
+                            NormalButton(Text(Image(systemName: "arrow.left"))) {
                                 model.delete()
                             }
-                            TypeButton(
+                            NormalButton(
                                 Text(Image(systemName: "equal")),
                                 color: .white,
                                 bgColor: Color("EqualButton")) {
@@ -134,37 +135,6 @@ struct CalculatorView: View {
             }
         }
         .padding()
-    }
-    
-    struct TypeButton: View {
-        
-        var text: Text
-        var color: Color
-        var bgColor: Color
-        var tapHandle : () -> Void
-        
-        init(_ text: Text, color: Color = Color("NumberButton"), bgColor: Color = Color.white, tapHandle: @escaping () -> Void) {
-            self.text = text
-            self.color = color
-            self.bgColor = bgColor
-            self.tapHandle = tapHandle
-        }
-        
-        var body: some View {
-            Button(action: {
-                self.tapHandle()
-            }, label: {
-                GeometryReader { geometry in
-                    text
-                        .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
-                        .foregroundColor(color)
-                        .background(bgColor)
-                }
-            })
-            .font(.largeTitle)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .cornerRadius(10)
-        }
     }
 }
 
