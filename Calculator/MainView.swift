@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  MainView.swift
 //  Calculator
 //
 //  Created by 张艺哲 on 2021/2/8.
@@ -8,15 +8,14 @@
 import SwiftUI
 import CoreData
 
-struct ContentView: View {
+struct MainView: View {
     var body: some View {
         NavigationView {
             CalculatorView()
-                .padding()
                 .navigationTitle("艺算")
                 .navigationBarItems(trailing:
                                         Button(action: {}, label: {
-                                            Text("汇率转换")
+                                            Text("单位转换")
                                         })
                 )
         }
@@ -25,6 +24,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        MainView()
     }
 }

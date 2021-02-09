@@ -22,14 +22,18 @@ struct CalculatorView: View {
                 VStack {
                     Spacer()
                         .frame(height: 50)
+                    // Operation Text
                     HStack {
                         Spacer()
                         Text(model.formula)
+                            .truncationMode(.middle)
+                            .lineLimit(2)
                             .font(Font.system(size: 30, weight: .light))
                             .foregroundColor(.gray)
+                            .frame(minHeight: 80)
                     }
                     .padding(.horizontal)
-                    
+                    // Result Text
                     ScrollView(.horizontal, showsIndicators: false) {
                         Text(model.result)
                             .frame(minWidth: geometry.size.width, alignment: .trailing)
@@ -39,43 +43,42 @@ struct CalculatorView: View {
                     }
                 }
                 
-                
                 GeometryReader { geometry in
                     VStack {
                         HStack {
                             VStack {
                                 TypeButton(Text("7")) {
-                                    model.add("7")
+                                    model.number("7")
                                 }
                                 TypeButton(Text("4")) {
-                                    model.add("4")
+                                    model.number("4")
                                 }
                                 TypeButton(Text("1")) {
-                                    model.add("1")
+                                    model.number("1")
                                 }
                                 
                             }
                             VStack {
                                 TypeButton(Text("8")) {
-                                    model.add("8")
+                                    model.number("8")
                                 }
                                 TypeButton(Text("5")) {
-                                    model.add("5")
+                                    model.number("5")
                                 }
                                 TypeButton(Text("2")) {
-                                    model.add("2")
+                                    model.number("2")
                                 }
                                 
                             }
                             VStack {
                                 TypeButton(Text("9")) {
-                                    model.add("9")
+                                    model.number("9")
                                 }
                                 TypeButton(Text("6")) {
-                                    model.add("6")
+                                    model.number("6")
                                 }
                                 TypeButton(Text("3")) {
-                                    model.add("3")
+                                    model.number("3")
                                 }
                                 
                             }
@@ -84,25 +87,25 @@ struct CalculatorView: View {
                                     Text(Image(systemName: "divide")),
                                     color: Color("OperationButton"),
                                     bgColor: .clear) {
-                                    model.add("/")
+                                    model.operation("/")
                                 }
                                 TypeButton(
                                     Text(Image(systemName: "multiply")),
                                     color: Color("OperationButton"),
                                     bgColor: .clear) {
-                                    model.add("x")
+                                    model.operation("x")
                                 }
                                 TypeButton(
                                     Text(Image(systemName: "minus")),
                                     color: Color("OperationButton"),
                                     bgColor: .clear) {
-                                    model.add("-")
+                                    model.operation("-")
                                 }
                                 TypeButton(
                                     Text(Image(systemName: "plus")),
                                     color: Color("OperationButton"),
                                     bgColor: .clear) {
-                                    model.add("+")
+                                    model.operation("+")
                                 }
                             }
                             .background(Color("OperationBgButton"))
@@ -111,10 +114,10 @@ struct CalculatorView: View {
                         }
                         HStack {
                             TypeButton(Text(".")) {
-                                model.add(".")
+                                model.number(".")
                             }
                             TypeButton(Text("0")) {
-                                model.add("0")
+                                model.number("0")
                             }
                             TypeButton(Text(Image(systemName: "arrow.left"))) {
                                 model.delete()
@@ -123,13 +126,14 @@ struct CalculatorView: View {
                                 Text(Image(systemName: "equal")),
                                 color: .white,
                                 bgColor: Color("EqualButton")) {
-                                model.add("=")
+                                model.equal()
                             }
                         }.frame(height: geometry.size.height / 4)
                     }
                 }
             }
         }
+        .padding()
     }
     
     struct TypeButton: View {
