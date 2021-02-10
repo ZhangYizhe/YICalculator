@@ -23,6 +23,9 @@ struct NormalButton: View {
     var body: some View {
         Button(action: {
             self.tapHandle()
+            
+            let impact = UIImpactFeedbackGenerator(style: .medium)
+            impact.impactOccurred()
         }, label: {
             GeometryReader { geometry in
                 text
