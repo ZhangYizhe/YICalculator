@@ -35,9 +35,14 @@ class ConvertViewModel: ObservableObject {
         }
         
         var tempInputString = inputString
-        if tempInputString.first == "0" && !tempInputString.contains(".") {
-            tempInputString = ""
+        if !tempInputString.contains(".") {
+            if tempInputString.first == "0" {
+                tempInputString = ""
+            } else if tempInputString.count > 1 && Array(tempInputString)[0] == "-" && Array(tempInputString)[1] == "0" {
+                tempInputString = "-"
+            }
         }
+        
         
         if description == "." {
             if tempInputString.contains(".") {
@@ -53,7 +58,11 @@ class ConvertViewModel: ObservableObject {
     }
     
     func minus() {
-        inputString = "\(-inputDouble)"
+        if inputString.first == "-" {
+            inputString = String(inputString.dropFirst())
+        } else {
+            inputString = "-" + inputString
+        }
     }
     
     func delete() {

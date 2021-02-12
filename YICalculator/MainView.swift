@@ -49,6 +49,7 @@ struct MainView: View {
                                         isPresentedConvert = true
                                     }, label: {
                                         Text("功能切换")
+                                            .foregroundColor(Color("InputText"))
                                     })
             )
         }

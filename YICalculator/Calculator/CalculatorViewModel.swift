@@ -38,6 +38,15 @@ class CalculatorViewModel: ObservableObject {
     func operation(_ description: String) {
         isEqual = false
         
+        if description == "+/-" {
+            if result.first == "-" {
+                result = String(result.dropFirst())
+            } else {
+                result = "-" + result
+            }
+            return
+        }
+        
         var tempResult = result
         
         if resultDouble == 0 {
@@ -68,8 +77,12 @@ class CalculatorViewModel: ObservableObject {
         }
         
         var tempResult = result
-        if tempResult.first == "0" && !tempResult.contains(".") {
-            tempResult = ""
+        if !tempResult.contains(".") {
+            if tempResult.first == "0" {
+                tempResult = ""
+            } else if tempResult.count > 1 && Array(tempResult)[0] == "-" && Array(tempResult)[1] == "0" {
+                tempResult = "-"
+            }
         }
         
         if description == "." {
@@ -89,7 +102,7 @@ class CalculatorViewModel: ObservableObject {
         isEqual = false
         
         var tempString = ""
-        if resultDouble != 0 {
+        if (result.count > 0 && resultDouble != 0) || result == "-"  {
             tempString = String(result.dropLast())
             if tempString == "" {
                 tempString = "0"
@@ -97,11 +110,22 @@ class CalculatorViewModel: ObservableObject {
             result = tempString
             return
         }
-        tempString = String(formula.dropLast())
-        if tempString == "" {
-            tempString = " "
+        
+        var isNum = false
+        for c in formula.reversed() {
+            if c == "+" || c == "-" || c == "x" || c == "/" {
+                if !isNum {
+                    formula = String(formula.dropLast())
+                }
+                break
+            }
+            formula = String(formula.dropLast())
+            isNum = true
         }
-        formula = tempString
+        
+        if formula.count == 0 {
+            formula = " "
+        }
     }
     
     private func deleteAll() {

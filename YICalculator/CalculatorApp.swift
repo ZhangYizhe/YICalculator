@@ -11,7 +11,7 @@ import SwiftUI
 struct YICalculator: App {
     
     init() {
-        UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor(named: "AccentColor")
+        UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor(named: "InputText")
     }
 
     var body: some Scene {

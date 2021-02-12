@@ -85,6 +85,12 @@ struct CalculatorView: View {
                             }
                             VStack {
                                 NormalButton(
+                                    Text("+/-"),
+                                    color: Color("OperationButton"),
+                                    bgColor: .clear) {
+                                    model.operation("+/-")
+                                }
+                                NormalButton(
                                     Text(Image(systemName: "divide")),
                                     color: Color("OperationButton"),
                                     bgColor: .clear) {
