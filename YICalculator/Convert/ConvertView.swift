@@ -47,6 +47,15 @@ struct ConvertView: View {
                 }
                 
                 HStack {
+                    NormalButton(Text("+/-")) {
+                        model.minus()
+                    }
+                    NormalButton(Text("AC")) {
+                        model.deleteAll()
+                    }
+                }
+                
+                HStack {
                     VStack {
                         NormalButton(Text("7")) {
                             model.number("7")

@@ -28,12 +28,12 @@ struct MainView: View {
                     .default(Text("计算器")) {
                         pattern = .Calculator
                     },
-//                    .default(Text("摄氏度转华氏度")) {
-//                        pattern = .Fahrenheit
-//                    },
-//                    .default(Text("华氏度转摄氏度")) {
-//                        pattern = .Centigrade
-//                    },
+                    .default(Text("摄氏度转华氏度")) {
+                        pattern = .Fahrenheit
+                    },
+                    .default(Text("华氏度转摄氏度")) {
+                        pattern = .Centigrade
+                    },
                     .default(Text("米转英尺")) {
                         pattern = .Foot
                     },

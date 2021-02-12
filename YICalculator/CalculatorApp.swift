@@ -9,6 +9,10 @@ import SwiftUI
 
 @main
 struct YICalculator: App {
+    
+    init() {
+        UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor(named: "AccentColor")
+    }
 
     var body: some Scene {
         WindowGroup {

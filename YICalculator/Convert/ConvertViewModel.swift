@@ -14,6 +14,7 @@ class ConvertViewModel: ObservableObject {
     
     init(_ pattern: PatternStruct) {
         self.pattern = pattern
+        self.inputString = "0"
     }
     
     @Published private(set) var inputString : String = "0" {
@@ -51,27 +52,32 @@ class ConvertViewModel: ObservableObject {
         inputString = tempInputString + description
     }
     
+    func minus() {
+        inputString = "\(-inputDouble)"
+    }
+    
     func delete() {
         inputString = String(inputString.dropLast())
         
-        if inputString == "0" || inputString == "" {
-            inputString = "0"
+        if inputString == "0" || inputString == "" || inputString == "-" {
+            deleteAll()
             return
         }
     }
     
+    func deleteAll() {
+        inputString = "0"
+    }
+    
     func convert() {
-        if inputDouble == 0 {
-            outputString = "0"
-            return
-        }
-        
         switch pattern {
         case .Calculator:
             break
         case .Fahrenheit:
+            outputString = String(format: "%.2f", 32 + inputDouble * 1.8)
             break
         case .Centigrade:
+            outputString = String(format: "%.2f", (inputDouble - 32) / 1.8)
             break
         case .Foot:
             outputString = String(format: "%.2f", inputDouble * 3.281)
